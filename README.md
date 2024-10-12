@@ -1,4 +1,4 @@
-# ImprovedHorizonSailwind
+# ImprovedHorizonSailwind 1.0
 
 Features:
 
