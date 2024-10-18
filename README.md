@@ -3,7 +3,7 @@
 Features:
 
   -  Islands now rise from the horizon at a more realistic rate
-  -  Islands don't appear as early
+  -  Islands appear earlier
   -  Adds height factor to island appearance based on Earth sized globe
 
 Install Process:
