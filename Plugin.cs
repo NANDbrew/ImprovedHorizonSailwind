@@ -38,7 +38,7 @@ namespace ImprovedHorizonSailwind
     {
         public const string pluginGuid = "com.TheOriginOfAllEvil.ImprovedHorizon";
         public const string pluginName = "Improved Horizons";
-        public const string pluginVersion = "0.1.0";
+        public const string pluginVersion = "0.1.1";
         internal static new ManualLogSource Logger;
 
         private void Awake()
