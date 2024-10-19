@@ -13,20 +13,20 @@ namespace ImprovedHorizonSailwind
         {
             [HarmonyPrefix]
             [HarmonyPatch("LateUpdate")]
-            public static void LateUpdate_Patch(float __sunkHeight, float __fullySunkDistance, float __fullyEmergedDistance, Transform __player)
+            public static void LateUpdate_Patch(float ___sunkHeight, ref float ___fullySunkDistance, ref float ___fullyEmergedDistance, Transform ___player)
             {
                 //finding the player's horizon
                 const float worldRadius = 3000;
-                float playerHeight = __player.transform.position.y / 1000;
+                float playerHeight = ___player.transform.position.y / 1000;
                 float horizonVal = 2 * playerHeight * worldRadius;
                 float horizonDistance = Mathf.Sqrt(2 * playerHeight * worldRadius);
 
 
 
                 //Finding the visual distance of the islands
-                float islandVisualHorizon = Mathf.Sqrt(2 * -__sunkHeight * worldRadius);
-                __fullySunkDistance = islandVisualHorizon + horizonDistance;
-                __fullyEmergedDistance = horizonDistance;
+                float islandVisualHorizon = Mathf.Sqrt(2 * -___sunkHeight * worldRadius);
+                ___fullySunkDistance = islandVisualHorizon + horizonDistance;
+                ___fullyEmergedDistance = horizonDistance;
             }
         }
 
@@ -48,10 +48,7 @@ namespace ImprovedHorizonSailwind
             Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
 
             //Initialising a harmony instance
-            Harmony harmony = new Harmony(pluginGuid);
-            MethodInfo original = AccessTools.Method(typeof(IslandHorizon), "LateUpdate");
-            MethodInfo patch = AccessTools.Method(typeof(Patches), "LateUpdate_Patch");
-            harmony.Patch(original, new HarmonyMethod(patch));
+            Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), pluginGuid);
         }
     }
 }
